@@ -5,6 +5,10 @@
     --terziary: #e4be82ff;
 }
 
+/* *{
+    color: var(--secondary);
+} */
+
 body{
     background-color: var(--secondary);
 }
@@ -15,10 +19,12 @@ body{
     font-weight: bolder;
 }
 
+/* NAV BAR */
 .nav{
     background-color:  var(--terziary)!important;
     max-height: 20vh;
     padding-inline: 25vw;
+    position: sticky;
 }
 
 .nav-item a{
@@ -34,5 +40,27 @@ body{
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    filter: drop-shadow(0 0 0 black);
+    filter: drop-shadow(0.2vw 0 10px var(--secondary));
+}
+/* /NAV BAR */
+
+/* BG titolo */
+#bg-titolo{
+    width: 100%;
+    height: 50vh;
+    background-image: url(../img/varie/bg-title.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+}
+
+#bg-titolo h1{
+    font-size: 8vw;
+    color: var(--primary);
+    filter: drop-shadow(0.2vw 0 10px var(--secondary));
+}
+
+#bg-titolo h4{
+    color: var(--primary-light);
 }
