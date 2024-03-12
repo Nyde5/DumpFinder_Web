@@ -1,0 +1,38 @@
+:root {
+    --primary: #2b5d29ff;
+    --primary-light: #8da24cff;
+    --secondary: #fefae0ff;
+    --terziary: #e4be82ff;
+}
+
+body{
+    background-color: var(--secondary);
+}
+
+#login{
+    text-decoration: solid;
+    color: var(--primary-light);
+    font-weight: bolder;
+}
+
+.nav{
+    background-color:  var(--terziary)!important;
+    max-height: 20vh;
+    padding-inline: 25vw;
+}
+
+.nav-item a{
+    text-decoration: solid;
+    color: var(--primary);
+    font-weight: bolder !important;
+}
+
+#logo{
+    width: 5vw !important;
+    height: 8vh !important;
+    background-image: url('../img/logo/dumpfinder.png');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 0 black);
+}
