@@ -5,9 +5,9 @@
     --terziary: #e4be82ff;
 }
 
-/* *{
-    color: var(--secondary);
-} */
+*{
+    z-index: 900;
+}
 
 body{
     background-color: var(--secondary);
@@ -123,6 +123,33 @@ body{
     padding-right: 5%;
 }
 
+h1{
+    color: var(--primary);
+    font-weight: bolder;
+}
+
 h2 {
     text-align: center;
+}
+
+h3.team{
+    position: relative;
+    font-weight: 700;
+    color: var(--terziary);
+    -webkit-text-stroke: var(--primary) 1px;
+    z-index: 999;
+}
+
+p{
+    color: var(--secondary);
+    text-align: justify;
+}
+
+p.primary-color{
+    color: var(--primary);
+}
+
+.img-team{
+    border-radius: 15%;
+    box-shadow: rgba(0, 0, 0, 0.500) 0.5vw 0.5vw 1vw;
 }
