@@ -1,0 +1,97 @@
+body {
+  font-size: 1.5rem;
+}
+
+#login_div {
+  height: 40%;
+  width: 40%;
+  margin: auto;
+}
+
+#login_card {
+  background-color: #C5CE96;
+  height: 100%;
+  top: 40%;
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+  margin: auto;
+  font-weight: 350;
+}
+.form__field {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0;
+  font-size: 2rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 2rem;
+  cursor: text;
+  top: 20px;
+}
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00000080;
+}
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 500;
+  border-width: 3px;
+  border-image: linear-gradient(to right, white, #cacaca);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+#user {
+  top: 10%;
+}
+#pass {
+  top: 25%;
+}
+#forgot {
+  font-size: 75%;
+  text-decoration: none;
+}
+
+#login {
+  position: relative;
+  top: 41%;
+  background-color: #8DA24C;
+  border-color: black;
+  border-width: 2px;
+  width: 25%;
+  height: 15%;
+  color: rgba(6, 0, 0, 0.65);
+  font-size: 150%;
+  font-weight: 500;
+  border-radius: 1.7rem;
+  padding-bottom: 8.5%;
+}
