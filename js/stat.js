@@ -37,24 +37,31 @@
 
 
 // Crea una richiesta XMLHttpRequest
-var xhr = new XMLHttpRequest();
+$.getJSON ('./stat.php', showResult);
+
+function showResult(result){
+  console.log(result);
+}
+
+
+// var xhr = new XMLHttpRequest();
 
 
 
-// Imposta il metodo e l'URL della richiesta
-xhr.open("POST", "../php/stat.php");
+// // Imposta il metodo e l'URL della richiesta
+// xhr.open("POST", "../php/stat.php");
 
-// Invia la richiesta
-xhr.send();
+// // Invia la richiesta
+// xhr.send();
 
-// Gestisce la risposta
-xhr.onload = function() {
-  if (xhr.status === 200) {
-    // La richiesta ha avuto successo
-    var data = JSON.parse(xhr.responseText);
-    // Usa i dati ricevuti dalla pagina PHP
-  } else {
-    // La richiesta ha fallito
-    console.error("Errore durante la richiesta: " + xhr.status);
-  }
-};
+// // Gestisce la risposta
+// xhr.onload = function() {
+//   if (xhr.status === 200) {
+//     // La richiesta ha avuto successo
+//     var data = JSON.parse(xhr.responseText);
+//     // Usa i dati ricevuti dalla pagina PHP
+//   } else {
+//     // La richiesta ha fallito
+//     console.error("Errore durante la richiesta: " + xhr.status);
+//   }
+// };
