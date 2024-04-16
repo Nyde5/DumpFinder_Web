@@ -63,8 +63,6 @@ body{
 
 #bg-titolo h4{
     color: var(--primary-light);
-<<<<<<< Updated upstream
-=======
 }
 
 /* CAROUSEL STATISTICHE */
@@ -182,5 +180,4 @@ p.primary-color{
         opacity: 100%;
         position: fixed;
     }
->>>>>>> Stashed changes
 }
