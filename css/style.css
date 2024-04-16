@@ -5,9 +5,9 @@
     --terziary: #e4be82ff;
 }
 
-*{
-    z-index: 900;
-}
+/* *{
+    color: var(--secondary);
+} */
 
 body{
     background-color: var(--secondary);
@@ -21,8 +21,7 @@ body{
 
 /* NAV BAR */
 .nav{
-    filter: opacity(90%);
-    background-color:  var(--terziary);
+    background-color:  var(--terziary)!important;
     max-height: 20vh;
     padding-inline: 25vw;
     position: sticky;
@@ -37,7 +36,7 @@ body{
 #logo{
     width: 5vw !important;
     height: 8vh !important;
-    background-image: url('../img/logo/logoDF.png');
+    background-image: url('../img/logo/dumpfinder.png');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -153,6 +152,14 @@ p.primary-color{
     box-shadow: rgba(0, 0, 0, 0.500) 0.5vw 0.5vw 1vw;
 }
 
+.img-qr-code{
+    max-width: max-content;
+    min-width: 10vw;
+}
+
+.border-primary{
+    outline: var(--primary) solid;
+}
 
 #fixedDiv {
     position: block; 
