@@ -1,6 +1,11 @@
 .navbar {
     background-color: #E4BE82;
 }
+.navbar-brand
+{
+ font-size: 16px;
+}
+
 
 body {
     background-color: #FEFAE0;
@@ -17,10 +22,10 @@ body {
     border-radius: 57px;
     margin-right: 1%;
 }
-.img_card
+.btn:hover
 {
-    width: 40%;
-    height: 40%;
+    background-color: #537100;
+
 }
 .card
 {   
@@ -32,10 +37,49 @@ body {
 {
 
     background-color: #E4BE82;
-    border-top-left-radius: 70px;
-    border-top-right-radius: 70px;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+  
+}
+.card-body {
+    background-size: cover;
+    background-position: center;
+}
 
 
 
+.custom-footer .left-buttons {
+    display: flex;
+    align-items: center;
+}
 
+.custom-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E4BE82;
+    color: black;
+    padding-top: 5px;
+}
+
+
+.custom-footer .left-buttons button {
+    background-color: #FEFAE0;
+    color: black;
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-left: 5%;
+}
+
+.custom-footer .label {
+    margin-top: -2%;
+    color: #8DA24C;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 1%;
+}
+
+.destra
+{
+    margin-left: 3%;
 }
