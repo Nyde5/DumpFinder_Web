@@ -10,7 +10,7 @@
 } */
 
 body{
-    background-color: var(--secondary);
+    background-color: var(--secondary) !important;
 }
 
 #login{

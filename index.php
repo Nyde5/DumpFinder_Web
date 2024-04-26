@@ -7,6 +7,12 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/footer.css">
+
+      <?php
+        session_start();
+        $conn = new mysqli("localhost", "root", "", "my_dumpfinder");
+      ?>
+
     </head>
     <body class="d-flex justify-content-center flex-column g-5">
       <!-- LOGIN DIV -->
@@ -38,22 +44,21 @@
 
       <!-- VETRINA -->
       <div class="container-fluid mt-5 p-5">
-          
-      <!-- IDEA DIV -->
-      <div id="idea" class="container-md d-flex flex-row">
-        <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 2vw;">
-          <h1>IDEA</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolorum minus, in nihil aut, ad provident quod rem incidunt doloremque modi molestias, accusantium necessitatibus! Perspiciatis et inventore eligendi enim earum.
-            Nisi optio natus inventore, non nesciunt corrupti deserunt nemo sit aut? Eaque voluptatum tempora, maiores natus minus aliquid modi nostrum dignissimos nesciunt, animi, ipsa voluptatem aspernatur consequatur. Facere, earum ad?
-            Soluta officia itaque officiis vel. Esse, nemo, quam hic a numquam facilis fuga quibusdam aperiam tempora quod accusantium explicabo omnis nam ipsum. Dolorem, exercitationem consectetur. Voluptates eaque delectus necessitatibus hic?
-          </p>
-        </div>
+        <!-- IDEA DIV -->
+        <div id="idea" class="container-md d-flex flex-row">
+          <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 2vw;">
+            <h1>IDEA</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolorum minus, in nihil aut, ad provident quod rem incidunt doloremque modi molestias, accusantium necessitatibus! Perspiciatis et inventore eligendi enim earum.
+              Nisi optio natus inventore, non nesciunt corrupti deserunt nemo sit aut? Eaque voluptatum tempora, maiores natus minus aliquid modi nostrum dignissimos nesciunt, animi, ipsa voluptatem aspernatur consequatur. Facere, earum ad?
+              Soluta officia itaque officiis vel. Esse, nemo, quam hic a numquam facilis fuga quibusdam aperiam tempora quod accusantium explicabo omnis nam ipsum. Dolorem, exercitationem consectetur. Voluptates eaque delectus necessitatibus hic?
+            </p>
+          </div>
 
 
-      <div class="position-relative w-50" style="top: 10vh; right: 0vw;">
-        <img class="rounded-5" src="img/varie/bg-title.jpg" alt="" width="600vw">
-        </div>
+            <div class="position-relative w-50" style="top: 10vh; right: 0vw;">
+            <img class="rounded-5" src="img/varie/bg-title.jpg" alt="" width="600vw">
+            </div>
         </div>
       </div>
 
@@ -61,44 +66,26 @@
       <div id="stat" class="d-flex justify-content-center flex-column text-center w-100 my-5 py-5">
         <h1>STATISTICHE</h1>
         <div class="slider w-100 p-5">
-          <div class="item">
-              <img src="img/varie/netturbino.jpg" alt="netturbino" class="img">
-              <div class="text d-flex justify-content-center flex-column w-100">
-                  <h2>Stat 1</h2>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+
+          <?php
+            $qry = "SELECT view_num_stat.Category FROM `view_num_stat`";
+            $result = $conn->query($qry);
+            
+            while($row = $result -> fetch_assoc()){
+              $row = $row['Category'];
+              $nameStat = str_replace('_', ' ', $row);
+              $nameStat = ucwords($nameStat);
+              echo "
+              <div class='item'>
+                <img src='img/varie/netturbino.jpg' alt='netturbino' class='img'>
+                <div class='text d-flex justify-content-center flex-column w-100 pt-3'>
+                    <h2>$nameStat</h2>
+                    <h1 class='text-center' id='$row'></h1>
+                </div>
               </div>
-              
-          </div>
-          <div class="item">
-              <img src="img/varie/netturbino.jpg" alt="netturbino" class="img">
-              <div class="text d-flex justify-content-center flex-column w-100">
-                  <h2>Città</h2>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              </div>
-              
-          </div>
-          <div class="item">
-              <img src="img/varie/natura-alberi.jpg" alt="natura-alberi" class="img">
-              <div class="text d-flex justify-content-center flex-column w-100">
-                  <h2>Bonifiche</h2>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              </div>
-          </div>
-          <div class="item">
-              <img src="img/varie/natura-alberi.jpg" alt="natura-alberi" class="img">
-              <div class="text d-flex justify-content-center flex-column w-100">
-                  <h2>Utenti Registrati</h2>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              </div>
-          </div>
-          <div class="item">
-              <img src="img/varie/natura-alberi.jpg" alt="natura-alberi" class="img">
-              <div class="text d-flex justify-content-center flex-column w-100">
-                  <h2>Segnalazioni</h2>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              </div>
-          </div>
-    
+              ";
+            } 
+          ?>
           <button id="next">></button>
           <button id="prev"><</button>
         </div>
@@ -210,7 +197,8 @@
       
       </footer>
       
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.2.14/jquery.countdown.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
       <script src="js/carousel_logic.js"></script>
       <script src="js/navbar.js"></script>
