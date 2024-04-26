@@ -1,0 +1,109 @@
+.navbar {
+    background-color: #E4BE82;
+}
+.navbar-brand
+{
+ font-size: 16px;
+}
+
+
+body {
+    background-color: #FEFAE0;
+    overflow-x: hidden;
+}
+
+.btn {
+    background-color: #FEFAE0;
+    color: #537100;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 1%;
+    width: 2vw;
+    height: 4vh;
+}
+.btn:hover
+{
+    background-color: #537100;
+
+}
+.card
+{   
+    width: 40%;
+    height: 40%;
+}
+
+.card-header{
+    background-color: #E4BE82;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+}
+.card-body {
+    background-size: cover;
+    background-position: center;
+}
+
+.custom-footer .left-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.custom-footer {
+    background-color: #E4BE82;
+    border-end-end-radius: 30px !important;
+    border-end-start-radius: 30px !important;
+}
+
+
+.custom-footer .left-buttons button {
+    background-color: #FEFAE0;
+    color: black;
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-left: 5%;
+}
+
+.custom-footer .label {
+    margin-top: -2%;
+    color: #8DA24C;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 1%;
+}
+
+.destra
+{
+    margin-left: 3%;
+}
+
+
+.rounded-top{
+    border-top-right-radius: 30px !important;
+    border-top-left-radius: 30px !important;
+}
+
+.bollino{
+    width: 1vw;
+    height: 2vh;
+    border-radius: 30px;
+}
+
+.Daapprovare{
+    background-color: orange;
+    border: 1px solid rgb(188, 122, 0);
+}
+
+.Approvata{
+    background-color: #537100;
+    border: 1px solid #283601;
+}
+
+.Rifiutata{
+    background-color: red;
+    border: 1px solid rgb(162, 0, 0);
+}
+
+.Bonificata{
+    background-color: white;
+    border: 1px solid rgb(153, 153, 153);
+}
