@@ -64,3 +64,27 @@ body{
 #bg-titolo h4{
     color: var(--primary-light);
 }
+
+/* BACKGROUND */
+.wrapper {
+    position: absolute;
+    animation: scroll 10000s linear infinite;
+    background: url(../img/varie/background.png);
+    background-size: 75%;
+    height: 100%;
+    width: 100%;
+    opacity: 0.3;
+  }
+  
+  @keyframes scroll {
+    100% {
+      background-position: -55000% -100000%;
+    }
+  }
+  
+  /* Fallback if the operatring system prefers reduced motion*/
+  @media (prefers-reduced-motion) {
+    .wrapper {
+      animation: scroll 30000s linear infinite;
+    }
+  }
