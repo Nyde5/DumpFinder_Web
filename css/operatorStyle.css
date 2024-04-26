@@ -13,14 +13,13 @@ body {
 
 .btn {
     background-color: #FEFAE0;
-    color: #537100; /* Colore del testo */
+    color: #537100;
     border: none;
-    border-radius: 10px;
-    padding: 8px 20px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 57px;
     margin-right: 1%;
+    width: 2vw;
+    height: 4vh;
 }
 .btn:hover
 {
@@ -33,20 +32,15 @@ body {
     height: 40%;
 }
 
-.card-header
-{
-
+.card-header{
     background-color: #E4BE82;
     border-top-left-radius: 90px;
     border-top-right-radius: 90px;
-  
 }
 .card-body {
     background-size: cover;
     background-position: center;
 }
-
-
 
 .custom-footer .left-buttons {
     display: flex;
