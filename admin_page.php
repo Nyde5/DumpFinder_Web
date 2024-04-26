@@ -9,13 +9,13 @@
 
         $conn = new mysqli("localhost", "root", "", "my_dumpfinder");
         
-        $qry = "SELECT amministratori.id_amministratore FROM `amministratori` WHERE amministratori.username_amministratore = '' AND amministratori.password_amministratore = ''";
+        $qry = "SELECT amministratori.id_amministratore FROM `amministratori` WHERE amministratori.email_amministratore = '$mail' AND amministratori.password_amministratore = '$psw'";
         $result = $conn -> query($qry);
 
         if ($result->num_rows > 0){
             
         } else {
-            header("Location: ../index.php");
+            header("Location: login.html");
         }
 
         $conn -> close();
