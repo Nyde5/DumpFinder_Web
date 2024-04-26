@@ -13,7 +13,7 @@
         $result = $conn -> query($qry);
 
         if ($result->num_rows > 0){
-            
+            htmlCorrect();
         } else {
             header("Location: login.html");
         }
@@ -39,6 +39,69 @@
                         </a>
                     </div>
                 </body>
+            </html>
+        <?php
+    }
+
+
+
+    function htmlCorrect(){
+        ?>
+            <html lang="it">
+
+            <head>
+                <meta charset="UTF-8">
+                <title>Operator Page</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+                <link rel="stylesheet" href="css/operatorStyle.css">
+            </head>
+
+            <body>
+                <nav class="navbar">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <img src="/img/logo/logoDF.png" alt="Bootstrap" width="30" height="24">
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary">Logout</button>
+                </nav>
+
+
+                <div class="d-flex justify-content-center align-items-center w-100 mt-5 pt-5" id="segnalazioniUtenti">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <a class="navbar-brand">
+                                    <img src="/img/logo/logoDF.png" alt="Bootstrap" width="30" height="24">
+                                    Giammarco Tocco 
+                                </a>
+                                <a class="navbar-brand">
+                                    <right>Stato:   </right>
+                                    <right><img src="/img/Operatore/Stato.png" alt="Bootstrap" width="20" height="20"></right>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body" style="background-image: url('/img/varie/img_card.png'); padding: 30%;">
+                        </div>
+                        <div class="card-footer custom-footer">
+                
+                        <div class="left-buttons">
+                                <button class="btn rounded-circle p-2">✔</button>
+                                <button class="btn rounded-circle p-2">✘</button>
+                            </div>
+                
+                            <span class="label">Via: Roma, 33, 95024 Acireale, italia</span>
+                
+                            <div>Chi</div>
+                            <div class="destra">Dove</div>
+                
+                        </div>
+                    </div>
+                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            </body>
+
             </html>
         <?php
     }
