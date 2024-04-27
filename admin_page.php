@@ -69,16 +69,17 @@
 
                     <?php
                         global $conn;
-                        $sql = "SELECT utenti.nome_utente AS 'nome', utenti.cognome_utente AS 'cognome', data_segnalazione AS 'data', citta.nome_citta, tipi_di_stato.tipo_stato AS 'stato', via, longitudine, latitudine, link_immagine AS 'linkImg', num_conferme AS 'conferme' FROM `segnalazioni`INNER JOIN citta ON segnalazioni.fk_citta = citta.id_citta INNER JOIN utenti ON segnalazioni.fk_utente = utenti.id_utente INNER JOIN tipi_di_stato ON segnalazioni.stato_segnalazione = tipi_di_stato.id_tipi_stato;";
+                        $sql = "SELECT DISTINCT segnalazioni.id_segnalazione AS 'id', utenti.nome_utente AS 'nome', utenti.cognome_utente AS 'cognome', data_segnalazione AS 'data', citta.nome_citta, tipi_di_stato.tipo_stato AS 'stato', via, longitudine, latitudine, link_immagine AS 'linkImg', num_conferme AS 'conferme' FROM `segnalazioni`INNER JOIN citta ON segnalazioni.fk_citta = citta.id_citta INNER JOIN utenti ON segnalazioni.fk_utente = utenti.id_utente INNER JOIN tipi_di_stato ON segnalazioni.stato_segnalazione = tipi_di_stato.id_tipi_stato;";
                         $result = $conn -> query($sql);
 
+                        $cont = 0;
                         while($row = $result -> fetch_assoc()){    
                             
                             echo "
                             <div class='card bg-transparent border-0'>
 
                                 <!-- Header card -->
-                                <div class='card-header rounded-top'>
+                                <div class='card-header rounded-top border-bottom-primary'>
                                     <div class='d-flex justify-content-between p-3'>
                                         <a class='navbar-brand'>
                                             <img src='img/varie/user.png' alt='Bootstrap' width='30' height='30'>
@@ -86,22 +87,26 @@
                                         </a>
                                         <div class='d-flex justify-content-center flex-row gap-2'>
                                             <div class='d-flex align-items-center'>Stato: ". $row["stato"] ."</div>
-                                            <div class='d-flex align-items-center'><div class='bollino ". str_replace(' ', '', $row['stato']) ."'></div></div>
+                                            <div class='d-flex align-items-center'><div id='statusDiv". $cont ."' class='bollino ". str_replace(' ', '', $row['stato']) ."'></div></div>
                                         </div>
                                     </div>
                                 </div>
 
                                 
                                 <!-- immagine segnalazione -->
-                                <div class='card-body' style=\"background-image: url('" . str_replace(' ', '', $row['linkImg']) . "'); padding: 30%;\"></div>
+                                <div class='card-body image-container p-3' onclick='openFullscreen(this)' data-src=". $row['linkImg'].">
+                                    <img src='". $row['linkImg'] ."' alt='Immagine'>
+                                </div>
+                                <!--<div onclick='openFullscreen(this)' class='card-body image-container' data-src=". $row['linkImg'] ." style=\"background-image: url('" . str_replace(' ', '', $row['linkImg']) . "'); padding: 30%;\"></div> -->
                             
                                 <!-- Footer card -->
-                                <div class='d-flex justify-content-between custom-footer p-2'>
+                                <div class='d-flex justify-content-between custom-footer p-2 border-top-primary'>
                         
-                                    <div class='left-buttons'>
-                                        <button class='btn rounded-circle p-2'>✔</button>
-                                        <button class='btn rounded-circle p-2'>✘</button>
-                                    </div>
+                                <div class='left-buttons'>
+                                    <button class='btn rounded-circle p-2' title='Approva' onclick='changeStatus(".$row["id"].", 2, \"statusDiv".$cont."\")'>✔</button>
+                                    <button class='btn rounded-circle p-2' title='Rifiuta' onclick='changeStatus(".$row["id"].", 3, \"statusDiv".$cont."\")'>✘</button>
+                                </div>
+                            
                         
                                     <div class='d-flex align-items-center justify-content-center text-center'>". $row["via"] . "<br>" . $row["nome_citta"] ."</div>
                         
@@ -114,13 +119,16 @@
                         
                                 </div>
                             </div>";
+                            $cont++;
                         }
                     ?>
                 </div>
 
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.2.14/jquery.countdown.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script src="js/operator.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             </body>
-
             </html>
         <?php
     }
