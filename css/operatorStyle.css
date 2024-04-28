@@ -10,6 +10,7 @@
 body {
     background-color: #FEFAE0;
     overflow-x: hidden;
+    padding-bottom: 4vw;
 }
 
 .btn {
@@ -20,17 +21,20 @@ body {
     cursor: pointer;
     margin-right: 1%;
     width: 2vw;
-    height: 4vh;
+    height: 2vw;
 }
+
+#btn-logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3vw;
+}
+
 .btn:hover
 {
     background-color: #537100;
 
-}
-.card
-{   
-    width: 40%;
-    height: 40%;
 }
 
 .card-header{
@@ -84,8 +88,18 @@ body {
 
 .bollino{
     width: 1vw;
-    height: 2vh;
+    height: 1vw;
     border-radius: 30px;
+}
+
+.conferme{
+    background-color: #fefae0;
+    width: 2vw !important;
+    height: 2vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
 }
 
 .Daapprovare{
@@ -150,4 +164,39 @@ body {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+}
+
+@media screen and (max-width: 3000px) and (min-width: 600px) {
+    .card{   
+        width: 40%;
+        height: 40%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card{   
+        width: 80%;
+        height: 40%;
+    }
+    
+    .btn {
+        background-color: #FEFAE0;
+        color: #537100;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 1%;
+        width: 4vw;
+        height: 4vw;
+    }
+    
+    .conferme{
+        background-color: #fefae0;
+        width: 4vw !important;
+        height: 4vw !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+    }
 }

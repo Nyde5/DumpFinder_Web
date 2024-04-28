@@ -33,8 +33,6 @@ function setDataStat(data){
 window.addEventListener('scroll', function() {
   var puntoDiAncoraggio = document.getElementById('stat');
   var posizionePuntoDiAncoraggio = puntoDiAncoraggio.getBoundingClientRect().top;
-
-  // Verifica se l'utente ha scrollato abbastanza per visualizzare il punto di ancoraggio
   if (posizionePuntoDiAncoraggio < window.innerHeight) {
       isOnStat = true;
   }

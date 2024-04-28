@@ -34,7 +34,7 @@ body {
 }
 
 #logo {
-  width: 5vw !important;
+  width: 3vw !important;
   height: 8vh !important;
   background-image: url("../img/logo/dumpfinder.png");
   background-position: center;
@@ -48,9 +48,10 @@ body {
 #bg-titolo {
   width: 100%;
   height: 50vh;
-  background-image: url(../img/varie/bg-title.jpg);
-  background-position: top;
+  background-image: url(../img/varie/titolo.jpg);
+  background-position: 150%;
   background-repeat: no-repeat;
+  background-blend-mode: darken;
   background-size: cover;
   border-radius: 15px;
 }
@@ -63,6 +64,10 @@ body {
 
 #bg-titolo h4 {
   color: var(--primary-light);
+}
+
+p{
+  text-align: justify !important;
 }
 
 /* CAROUSEL STATISTICHE */
@@ -139,12 +144,12 @@ h3.team {
   z-index: 999;
 }
 
-p {
+h6 {
   color: var(--secondary);
   text-align: justify;
 }
 
-p.primary-color {
+h6.primary-color {
   color: var(--primary);
 }
 

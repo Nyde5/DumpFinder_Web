@@ -5,7 +5,6 @@
         $qry = "SELECT * FROM `view_num_stat`"; 
         $data = array();
         
-        // Eseguo Query Bonifica
         $result = $conn->query($qry);
         
         while($row = $result -> fetch_assoc()){

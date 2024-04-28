@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["mail"]) && isset($_POST["psw"])){
+    if(($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["mail"]) && isset($_POST["psw"])) || (isset($_SESSION['log']) && $_SESSION["log"] == 1 )){
         $mail = $_POST["mail"];
         $psw = md5($_POST["psw"]);
 
@@ -11,6 +11,7 @@
         $result = $conn -> query($qry);
 
         if ($result->num_rows > 0){
+            $_SESSION['log'] = 1;
             htmlCorrect();
         } else {
             header("Location: login.html");
@@ -33,7 +34,7 @@
                         <h1 class="text-center">Miss Params</h1>
                         <h3 class="text-center">Please came back to home</h3>
                         <a href="index.php" class="text-center">
-                            <img src="img/logo/logoDF.png" alt="" width="200px">
+                            <img src="img/logo/dumpfinder.png" alt="" width="200px">
                         </a>
                     </div>
                 </body>
@@ -56,12 +57,19 @@
 
             <body>
                 <nav class="navbar">
-                    <div class="container">
-                        <a class="navbar-brand" href="#">
-                            <img src="/img/logo/logoDF.png" alt="Bootstrap" width="30" height="24">
-                        </a>
+                    <div class="row-cols-3 d-flex flex-row w-100">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <a class="navbar-brand" href="index.php?logout=-1">
+                                <img src="img/logo/dumpfinder.png" alt="Bootstrap" width="100" height="100">
+                            </a>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end align-items-center pe-5">
+                            <button id="btn-logout" type="button" class="btn btn-outline-secondary w-25">Logout</button>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary">Logout</button>
                 </nav>
 
 
@@ -69,7 +77,7 @@
 
                     <?php
                         global $conn;
-                        $sql = "SELECT DISTINCT segnalazioni.id_segnalazione AS 'id', utenti.nome_utente AS 'nome', utenti.cognome_utente AS 'cognome', data_segnalazione AS 'data', citta.nome_citta, tipi_di_stato.tipo_stato AS 'stato', via, longitudine, latitudine, link_immagine AS 'linkImg', num_conferme AS 'conferme' FROM `segnalazioni`INNER JOIN citta ON segnalazioni.fk_citta = citta.id_citta INNER JOIN utenti ON segnalazioni.fk_utente = utenti.id_utente INNER JOIN tipi_di_stato ON segnalazioni.stato_segnalazione = tipi_di_stato.id_tipi_stato;";
+                        $sql = "SELECT DISTINCT segnalazioni.id_segnalazione AS 'id', utenti.nome_utente AS 'nome', utenti.cognome_utente AS 'cognome', data_segnalazione AS 'data', citta.nome_citta, tipi_di_stato.tipo_stato AS 'stato', via, longitudine, latitudine, link_immagine AS 'linkImg', num_conferme AS 'conferme' FROM `segnalazioni`INNER JOIN citta ON segnalazioni.fk_citta = citta.id_citta INNER JOIN utenti ON segnalazioni.fk_utente = utenti.id_utente INNER JOIN tipi_di_stato ON segnalazioni.stato_segnalazione = tipi_di_stato.id_tipi_stato ORDER BY conferme DESC;";
                         $result = $conn -> query($sql);
 
                         $cont = 0;
@@ -86,7 +94,7 @@
                                             ". $row["nome"] . " " . $row["cognome"] ."
                                         </a>
                                         <div class='d-flex justify-content-center flex-row gap-2'>
-                                            <div class='d-flex align-items-center'>Stato: ". $row["stato"] ."</div>
+                                            <div class='d-flex align-items-center' id='statusText". $cont ."'>Stato: ". $row["stato"] ."</div>
                                             <div class='d-flex align-items-center'><div id='statusDiv". $cont ."' class='bollino ". str_replace(' ', '', $row['stato']) ."'></div></div>
                                         </div>
                                     </div>
@@ -103,15 +111,16 @@
                                 <div class='d-flex justify-content-between custom-footer p-2 border-top-primary'>
                         
                                 <div class='left-buttons'>
-                                    <button class='btn rounded-circle p-2' title='Approva' onclick='changeStatus(".$row["id"].", 2, \"statusDiv".$cont."\")'>✔</button>
-                                    <button class='btn rounded-circle p-2' title='Rifiuta' onclick='changeStatus(".$row["id"].", 3, \"statusDiv".$cont."\")'>✘</button>
-                                </div>
+                                    <button class='btn rounded-circle p-2' title='Approva' onclick='changeStatus(".$row["id"].", 2, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/agree.png' width = '16' height = '16'></img></button>
+                                    <button class='btn rounded-circle p-2' title='Rifiuta' onclick='changeStatus(".$row["id"].", 3, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/desagree.png' width = '16' height = '16'></img></button>
+                                    <button class='btn rounded-circle p-2' title='Bonificata' onclick='changeStatus(".$row["id"].", 4, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/clean.png' width = '16' height = '16'></img></button>
+                                    </div>
                             
                         
                                     <div class='d-flex align-items-center justify-content-center text-center'>". $row["via"] . "<br>" . $row["nome_citta"] ."</div>
                         
                                     <div class='d-flex flex-row align-items-center gap-2 pe-2'>
-                                        <div>". $row["conferme"] ."</div>
+                                        <div class='rounded-circle p-2 text-center conferme' title='conferme'>". $row["conferme"] ."</div>
                                         <a href='https://www.google.com/maps?q=". $row["latitudine"] .",". $row["longitudine"] ."' class='destra rounded-circle p-1' style = 'background-color: #fefae0' target='_blank'>
                                             <svg width='32px' height='32px' viewBox='0 0 24.00 24.00' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='#e4be82'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z' stroke='#e4be82' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z' stroke='#e4be82' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>
                                         </a>

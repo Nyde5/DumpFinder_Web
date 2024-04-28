@@ -10,6 +10,9 @@
 
       <?php
         session_start();
+        if(isset($_GET['logout']) && $_GET['logout'] == "-1"){
+          $_SESSION['log'] = -1;
+        }
         $conn = new mysqli("localhost", "root", "", "my_dumpfinder");
       ?>
 
@@ -48,16 +51,24 @@
         <div id="idea" class="container-md d-flex flex-row">
           <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 2vw;">
             <h1>IDEA</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolorum minus, in nihil aut, ad provident quod rem incidunt doloremque modi molestias, accusantium necessitatibus! Perspiciatis et inventore eligendi enim earum.
-              Nisi optio natus inventore, non nesciunt corrupti deserunt nemo sit aut? Eaque voluptatum tempora, maiores natus minus aliquid modi nostrum dignissimos nesciunt, animi, ipsa voluptatem aspernatur consequatur. Facere, earum ad?
-              Soluta officia itaque officiis vel. Esse, nemo, quam hic a numquam facilis fuga quibusdam aperiam tempora quod accusantium explicabo omnis nam ipsum. Dolorem, exercitationem consectetur. Voluptates eaque delectus necessitatibus hic?
+            <p class="me-4">
+              <?php
+
+                $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'idea'";
+                $result = $conn->query($qry);
+
+                while($row = $result -> fetch_assoc()){
+                  $row = $row["content_text"];
+                  echo "$row";
+                }
+
+              ?>
             </p>
           </div>
 
 
             <div class="position-relative w-50" style="top: 10vh; right: 0vw;">
-            <img class="rounded-5" src="img/varie/bg-title.jpg" alt="" width="600vw">
+              <img class="rounded-5" src="img/varie/idea.png" alt="" width="600vw" height="450vh">
             </div>
         </div>
       </div>
@@ -95,7 +106,7 @@
       <!-- RISULTATI DIV -->
       <div id="ris" class="container-md d-flex flex-row my-5 py-5">
         <div class="position-relative w-50" style="top: -10vh; right: -4vw;">
-          <img class="rounded-5" src="img/varie/bg-title.jpg" alt="" width="600vw">
+          <img class="rounded-5" src="img/varie/risultati.jpg" alt="" width="600vw" height="450vh">
         </div> 
         
         <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 0vw;">
@@ -105,9 +116,17 @@
           <!-- CONTENUTO RISULTATI -->
           <div class="d-flex justify-content-center align-items-center flex-row flex-wrap">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolorum minus, in nihil aut, ad provident quod rem incidunt doloremque modi molestias, accusantium necessitatibus! Perspiciatis et inventore eligendi enim earum.
-              Nisi optio natus inventore, non nesciunt corrupti deserunt nemo sit aut? Eaque voluptatum tempora, maiores natus minus aliquid modi nostrum dignissimos nesciunt, animi, ipsa voluptatem aspernatur consequatur. Facere, earum ad?
-              Soluta officia itaque officiis vel. Esse, nemo, quam hic a numquam facilis fuga quibusdam aperiam tempora quod accusantium explicabo omnis nam ipsum. Dolorem, exercitationem consectetur. Voluptates eaque delectus necessitatibus hic?
+              <?php
+
+                $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'risultati'";
+                $result = $conn->query($qry);
+                
+                while($row = $result -> fetch_assoc()){
+                  $row = $row["content_text"];
+                  echo "$row";
+                }
+
+              ?>
             </p>
             <img src="img/" alt="">
           </div>
@@ -120,17 +139,32 @@
         <!-- CONTENUTO -->
         <div class="row d-flex g-5">
           <div class="col-6">
+            <?php
+
+              $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'chi_siamo'";
+              $result = $conn->query($qry);
+
+              $text = array("", "");
+              while($row = $result -> fetch_assoc()){
+                $test = explode("|", $row['content_text']);
+        
+                // Assegna i valori dell'array $test all'array $text
+                $text[0] = $test[0];
+                $text[1] = $test[1];
+            } 
+
+            ?>
             <p class="primary-color">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur autem consequatur nesciunt veritatis facere itaque doloribus perspiciatis vitae? Ad veritatis atque iste voluptates dolor fuga tenetur, quaerat provident doloribus modi.
-              Magni est sint perspiciatis totam consequatur harum qui eaque animi unde velit, alias, vero optio. Facilis error vitae nam tempora incidunt deleniti, placeat sunt, quia esse voluptates, minus quis quaerat.
-              Enim neque accusantium doloremque consectetur a expedita aliquid magnam sed, officiis placeat similique ipsam modi quia impedit et amet quibusdam dolorem ratione saepe, dolorum dicta quasi aperiam! Consectetur, mollitia facilis?
+              <?php 
+                echo "$text[0]";
+              ?>
             </p>
           </div>
           <div class="col-6">
             <p class="primary-color">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur autem consequatur nesciunt veritatis facere itaque doloribus perspiciatis vitae? Ad veritatis atque iste voluptates dolor fuga tenetur, quaerat provident doloribus modi.
-              Magni est sint perspiciatis totam consequatur harum qui eaque animi unde velit, alias, vero optio. Facilis error vitae nam tempora incidunt deleniti, placeat sunt, quia esse voluptates, minus quis quaerat.
-              Enim neque accusantium doloremque consectetur a expedita aliquid magnam sed, officiis placeat similique ipsam modi quia impedit et amet quibusdam dolorem ratione saepe, dolorum dicta quasi aperiam! Consectetur, mollitia facilis?
+              <?php 
+                echo "$text[1]";
+              ?>
             </p>
           </div>
         </div>
@@ -168,7 +202,7 @@
             </div>
           </div>
       </div>
-      <div class="container mb-5 p-5 bg-light border-primary  d-flex justify-content-center rounded align-items-center w-25 h-25 ">
+      <div class="container p-5 bg-light border-primary d-flex justify-content-center rounded align-items-center w-25 h-25 mb-5">
 
         <!-- <div class="position-relative bg-white img-qr-code" style="bottom: 1.25vw;"></div> -->
         <img class="img-qr-code" src="img/varie/qrcode.png" alt="">
@@ -176,11 +210,11 @@
       </div>
 
 
-      <div id="contact">
+      <div id="contact" class="mt-5">
 
       </div>
 
-      <footer class="footer" >
+      <footer class="footer mt-5 d-flex" >
         <div class="waves">
           <div class="wave" id="wave1"></div>
           <div class="wave" id="wave2"></div>
@@ -189,11 +223,11 @@
         </div>
       
         <h1 style="color: #fefae0ff;">CONTATTACI</h1>
-        <ul class="menu">
-          <li class="menu__item"><a class="menu__link" href="#"><img class="social_logo" src="img/logo/instagram_logo.svg" alt="instagram_logo"></a></li>
-          <li class="menu__item"><a class="menu__link" href="#"><img class="social_logo" src="img/logo/facebook_logo.svg" alt="facebook_logo"></a></li>
-        </ul>
-        <p style="opacity: 0.75;">info@dumpfinder.it</p>
+        <div class="menu row p-2 z-3">
+          <div class="col menu__item"><a class="menu__link" href="#"><img class="social_logo" src="img/logo/instagram_logo.svg" alt="instagram_logo"></a></div>
+          <div class="col menu__item"><a class="menu__link" href="#"><img class="social_logo" src="img/logo/facebook_logo.svg" alt="facebook_logo"></a></div>
+        </div>
+        <h6 class="w-100 text-center" style="opacity: 0.75;">info@dumpfinder.it</h6>
       
       </footer>
       

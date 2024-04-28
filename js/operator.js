@@ -1,9 +1,22 @@
+const btn_logout = document.getElementById('btn-logout').addEventListener('click', ()=>window.location.href = "index.php?logout=-1");
+
 function changeStatus(id, type, idElement){
 
     const elementClass = document.getElementById(idElement);
-    console.log(elementClass);
+    elementClass.classList = 'bollino';
 
-    elementClass.classList.remove()
+    switch (type) {
+        case 2:
+            elementClass.classList.add('Approvata');
+            break;
+        case 3: 
+            elementClass.classList.add('Rifiutata');
+            break;
+        case 4:
+            elementClass.classList.add('Bonificata');
+            break;    
+    }
+
 
     $.post('php/changeReportStatus.php', {
         id: id,
