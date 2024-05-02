@@ -1,18 +1,19 @@
 <?php
     session_start();
+    require_once "php/connToDB.php";
 
     if(($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["mail"]) && isset($_POST["psw"])) || (isset($_SESSION['log']) && $_SESSION["log"] == 1 )){
         $mail = $_POST["mail"];
         $psw = md5($_POST["psw"]);
-
-        $conn = new mysqli("localhost", "root", "", "my_dumpfinder");
         
-        $qry = "SELECT amministratori.id_amministratore FROM `amministratori` WHERE amministratori.email_amministratore = '$mail' AND amministratori.password_amministratore = '$psw'";
+        $qry = "SELECT Amministratori.id_amministratore FROM `Amministratori` WHERE Amministratori.email_amministratore = 'a@a.com' AND Amministratori.password_amministratore = '0cc175b9c0f1b6a831c399e269772661';";
         $result = $conn -> query($qry);
 
         if ($result->num_rows > 0){
             $_SESSION['log'] = 1;
-            htmlCorrect();
+            $row = $result->fetch_assoc();
+            $id = $row["id_amministratore"];
+            htmlCorrect($id);
         } else {
             header("Location: login.html");
         }
@@ -44,7 +45,13 @@
 
 
 
-    function htmlCorrect(){
+    function htmlCorrect($id){
+        global $conn;
+        $sql = "SELECT Amministratori.username_amministratore FROM Amministratori WHERE id_amministratore = '$id'";
+        $result = $conn -> query($sql);
+        $row = $result->fetch_assoc();
+        $username = $row["username_amministratore"];
+        
         ?>
             <html lang="it">
 
@@ -58,8 +65,8 @@
             <body>
                 <nav class="navbar">
                     <div class="row-cols-3 d-flex flex-row w-100">
-                        <div class="col-4">
-
+                        <div class="col-4 d-flex align-items-center justify-content-center">
+                            <h1 class="d-flex align-items-center justify-content-center">Ciao <?php echo"$username"; ?> </h1>
                         </div>
                         <div class="col-4 d-flex justify-content-center">
                             <a class="navbar-brand" href="index.php?logout=-1">
@@ -77,12 +84,20 @@
 
                     <?php
                         global $conn;
-                        $sql = "SELECT DISTINCT segnalazioni.id_segnalazione AS 'id', utenti.nome_utente AS 'nome', utenti.cognome_utente AS 'cognome', data_segnalazione AS 'data', citta.nome_citta, tipi_di_stato.tipo_stato AS 'stato', via, longitudine, latitudine, link_immagine AS 'linkImg', num_conferme AS 'conferme' FROM `segnalazioni`INNER JOIN citta ON segnalazioni.fk_citta = citta.id_citta INNER JOIN utenti ON segnalazioni.fk_utente = utenti.id_utente INNER JOIN tipi_di_stato ON segnalazioni.stato_segnalazione = tipi_di_stato.id_tipi_stato ORDER BY conferme DESC;";
+                        $sql = "SELECT DISTINCT Segnalazioni.id_segnalazione AS 'id', Utenti.nome_utente AS 'nome', Utenti.cognome_utente AS 'cognome', Data_Segnalazione AS 'data', Citta.nome_citta, Tipi_Di_Stato.tipo_stato AS 'stato', via, longitudine, latitudine, Segnalazioni.link_immagine AS 'linkImg', num_conferme AS 'conferme', Utenti.link_immagine AS 'userImg' FROM `Segnalazioni`INNER JOIN Citta ON Segnalazioni.fk_citta = Citta.id_citta INNER JOIN Utenti ON Segnalazioni.fk_utente = Utenti.id_utente INNER JOIN Tipi_Di_Stato ON Segnalazioni.stato_segnalazione = Tipi_Di_Stato.id_tipi_stato ORDER BY conferme DESC;";
                         $result = $conn -> query($sql);
 
                         $cont = 0;
                         while($row = $result -> fetch_assoc()){    
-                            
+
+                            $imgUser = trim($row["userImg"]);
+                            if (strlen($imgUser) > 2){
+                                $imgUser = $row["userImg"];
+                            } 
+                            else{
+                                $imgUser = "img/varie/user.png";
+                            } 
+
                             echo "
                             <div class='card bg-transparent border-0'>
 
@@ -90,7 +105,7 @@
                                 <div class='card-header rounded-top border-bottom-primary'>
                                     <div class='d-flex justify-content-between p-3'>
                                         <a class='navbar-brand'>
-                                            <img src='img/varie/user.png' alt='Bootstrap' width='30' height='30'>
+                                            <img class='rounded-circle' src='$imgUser' alt='Bootstrap' width='30' height='30'>
                                             ". $row["nome"] . " " . $row["cognome"] ."
                                         </a>
                                         <div class='d-flex justify-content-center flex-row gap-2'>
@@ -111,9 +126,10 @@
                                 <div class='d-flex justify-content-between custom-footer p-2 border-top-primary'>
                         
                                 <div class='left-buttons'>
-                                    <button class='btn rounded-circle p-2' title='Approva' onclick='changeStatus(".$row["id"].", 2, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/agree.png' width = '16' height = '16'></img></button>
-                                    <button class='btn rounded-circle p-2' title='Rifiuta' onclick='changeStatus(".$row["id"].", 3, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/desagree.png' width = '16' height = '16'></img></button>
-                                    <button class='btn rounded-circle p-2' title='Bonificata' onclick='changeStatus(".$row["id"].", 4, \"statusDiv".$cont."\", 'statusText". $cont ."')'><img src='img/varie/clean.png' width = '16' height = '16'></img></button>
+                                    <button class='btn rounded-circle p-2' title='Approva'    onclick='changeStatus(".$row['id'].", 2, \"statusDiv".$cont."\")'><img src='img/varie/agree.png' width = '16' height = '16'></img></button>
+                                    <button class='btn rounded-circle p-2' title='Rifiuta'    onclick='changeStatus(".$row['id'].", 3, \"statusDiv".$cont."\")'><img src='img/varie/desagree.png' width = '16' height = '16'></img></button>
+                                    <button class='btn rounded-circle p-2' title='Bonificata' onclick='changeStatus(".$row['id'].", 4, \"statusDiv".$cont."\")'><img src='img/varie/clean.png' width = '16' height = '16'></img></button>
+                                   
                                     </div>
                             
                         
@@ -133,10 +149,29 @@
                     ?>
                 </div>
 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.2.14/jquery.countdown.min.js"></script>
+                <div id="motivationDiv" class="denyDivFixed">
+                    <div class="row d-flex flex-column card card-header rounded-3 gap-3 px-4 w-25 h-50">
+                        <div class="col-3 w-100">
+                            <h1 class="text-end position-absolute start-100" style="top: -8%;">X</h1>
+                        </div>
+                        <div class="col-3 w-100">
+                            <h2 class="text-center">Inserire Motivazione:</h2>
+                        </div>
+                        <div class="col-3 d-flex flex-column justify-content-center w-100 h-50">
+                            <textarea class="w-100 input-text" maxlength="250" minlength="10" name="" id="motivation" cols="30" rows="5" spellcheck=true></textarea>
+                            <label id="showNumLetter" for="motivation">Max 250 words</label>
+                        </div>
+                        <div class="col-3 w-100 d-flex justify-content-center pt-3">
+                            <input class="w-75 h-100 btn" type="button" value="Invia">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.2.14/jquery.countdown.min.js"></script> -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script src="js/operator.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                <?php echo "<script>setIdAdmin($id);</script> "?>
             </body>
             </html>
         <?php

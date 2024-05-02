@@ -9,15 +9,20 @@
 
 body {
     background-color: #FEFAE0;
+    color: #fefae0ff;
     overflow-x: hidden;
     padding-bottom: 4vw;
+}
+
+body *{
+    color: #fefae0;
 }
 
 .btn {
     background-color: #FEFAE0;
     color: #537100;
     border: none;
-    font-size: 16px;
+    font-size: x-large;
     cursor: pointer;
     margin-right: 1%;
     width: 2vw;
@@ -75,8 +80,7 @@ body {
     margin-left: 1%;
 }
 
-.destra
-{
+.destra{
     margin-left: 3%;
 }
 
@@ -100,6 +104,8 @@ body {
     align-items: center;
     justify-content: center;
     user-select: none;
+    color: #E4BE82;
+    font-size: large;
 }
 
 .Daapprovare{
@@ -165,6 +171,38 @@ body {
     max-height: 90%;
     object-fit: contain;
 }
+
+.denyDivFixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.denyDivFixed div textarea {
+    background-color: #8DA24C;
+    outline: #283601;
+    border: #283601 0.2vw solid;
+    border-radius: 15px;
+    padding: 1vw;
+    resize: none;
+}
+
+.input-text {
+    text-align: left;
+    vertical-align: top;
+}
+
+.input-text:focus {
+    text-align: left;
+    vertical-align: top;
+}
+
 
 @media screen and (max-width: 3000px) and (min-width: 600px) {
     .card{   

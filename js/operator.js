@@ -1,29 +1,68 @@
 const btn_logout = document.getElementById('btn-logout').addEventListener('click', ()=>window.location.href = "index.php?logout=-1");
+const motivationDiv = document.getElementById('motivationDiv');
+
+const motivation = document.getElementById('motivation');
+motivation.addEventListener('input', ()=>checkMotivation());
+
+let idAdmin = -1;
+
+function checkMotivation(){
+    const showNumLetter = document.getElementById('showNumLetter');
+    showNumLetter.innerText = 'Max ' + motivation.value.length + '/250 words';
+}
 
 function changeStatus(id, type, idElement){
+    try {
+        const elementClass = document.getElementById(idElement);
 
-    const elementClass = document.getElementById(idElement);
-    elementClass.classList = 'bollino';
+        const num = getNumber(idElement);
 
-    switch (type) {
-        case 2:
-            elementClass.classList.add('Approvata');
-            break;
-        case 3: 
-            elementClass.classList.add('Rifiutata');
-            break;
-        case 4:
-            elementClass.classList.add('Bonificata');
-            break;    
+        const statusText = document.getElementById('statusText' + num);
+
+        elementClass.classList = 'bollino';
+        let text = '';
+
+        switch (type) {
+            case 2:
+                text = 'Approvata';
+                elementClass.classList.add('Approvata');
+                break;
+            case 3: 
+                text = 'Rifiutata';
+                // elementClass.classList.add('Rifiutata');
+                showMotivationDiv();
+                break;
+            case 4:
+                text = 'Bonificata';
+                elementClass.classList.add('Bonificata');
+                break;    
+        }
+
+        if(!text.includes('Rifiutata')){            
+            statusText.innerText = 'Stato: ' + text;
+            
+            
+            $.post('php/changeReportStatus.php', {
+                id: id,
+                type: type
+            }, (data, status)=>{
+                console.log(status);
+            }, "json");
+        }
+    } catch (error) {
+        console.error("ERRORE JS: " + error);
     }
 
+}
 
-    $.post('php/changeReportStatus.php', {
-        id: id,
-        type: type
-    }, (data, status)=>{
-        console.log(status);
-    }, "json");
+function showMotivationDiv() {
+    motivationDiv.style.display = 'flex';
+}
+
+function getNumber(string) {
+    const numberStr = string.match(/\d+/g).join('');
+    const number = parseInt(numberStr, 10);
+    return number;
 }
 
 
@@ -41,12 +80,22 @@ function openFullscreen(element) {
 
     fullscreenImage.style.display = 'flex';
     fullscreenImage.addEventListener('click', closeFullscreen);
-}
 
+    document.addEventListener('keydown', function(event) {
+        if (event.keyCode === 27) {
+            closeFullscreen();
+        }
+    });
+}
 
 function closeFullscreen() {
     let fullscreenImage = document.querySelector('.fullscreen-image');
-    fullscreenImage.parentNode.removeChild(fullscreenImage);
+    if (fullscreenImage) {
+        fullscreenImage.parentNode.removeChild(fullscreenImage);
+    }
 }
 
-
+function setIdAdmin(id) {
+    idAdmin = id;
+    console.log(idAdmin);
+}
