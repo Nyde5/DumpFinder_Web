@@ -152,17 +152,18 @@
                 <div id="motivationDiv" class="denyDivFixed">
                     <div class="row d-flex flex-column card card-header rounded-3 gap-3 px-4 w-25 h-50">
                         <div class="col-3 w-100">
-                            <h1 class="text-end position-absolute start-100" style="top: -8%;">X</h1>
+                            <h1 id="closeDescriptionWindow" class="text-end position-absolute start-100" style="top: -8%;">X</h1>
                         </div>
                         <div class="col-3 w-100">
                             <h2 class="text-center">Inserire Motivazione:</h2>
                         </div>
-                        <div class="col-3 d-flex flex-column justify-content-center w-100 h-50">
+                        <div class="col-3 d-flex flex-column justify-content-start w-100 h-50 pt-3">
                             <textarea class="w-100 input-text" maxlength="250" minlength="10" name="" id="motivation" cols="30" rows="5" spellcheck=true></textarea>
-                            <label id="showNumLetter" for="motivation">Max 250 words</label>
+                            <label id="showNumLetter" for="motivation">Max 0/250 words</label>
+                            <label id="showJsError" for="motivation"></label>
                         </div>
                         <div class="col-3 w-100 d-flex justify-content-center pt-3">
-                            <input class="w-75 h-100 btn" type="button" value="Invia">
+                            <input id="motivationBtn" class="w-75 h-100 btn" type="button" value="Invia">
                         </div>
                     </div>
                 </div>

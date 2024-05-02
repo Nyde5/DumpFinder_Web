@@ -1,5 +1,8 @@
 const btn_logout = document.getElementById('btn-logout').addEventListener('click', ()=>window.location.href = "index.php?logout=-1");
+const closeDescriptionWindow = document.getElementById('closeDescriptionWindow').addEventListener('click', ()=>hideMotivationDiv());
+const motivationBtn = document.getElementById('motivationBtn').addEventListener('click', ()=>sendMotivationMessage());
 const motivationDiv = document.getElementById('motivationDiv');
+const showJsError = document.getElementById('showJsError');
 
 const motivation = document.getElementById('motivation');
 motivation.addEventListener('input', ()=>checkMotivation());
@@ -57,6 +60,38 @@ function changeStatus(id, type, idElement){
 
 function showMotivationDiv() {
     motivationDiv.style.display = 'flex';
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            hideMotivationDiv();
+        }
+    });
+}
+
+function hideMotivationDiv(){
+    motivationDiv.style.display = 'none';
+}
+
+function showError(message){
+    showJsError.innerText = message;
+
+    setTimeout(()=>{
+        showJsError.innerText = ' ';
+    }, 1500);
+}
+
+function sendMotivationMessage(){
+    const motivation = document.getElementById('motivation').value;
+    if(motivation.length > 10){
+
+        console.log('Motivazione mandata...');
+        // $.post('php/changeReportStatus.php', {
+        //     id: id,
+        //     type: type
+        // }, (data, status)=>{
+        //     console.log(status);
+        // }, "json");   
+        hideMotivationDiv();
+    } else showError('Il Messaggio Deve Essere Almeno di 10 Caratteri');
 }
 
 function getNumber(string) {

@@ -83,7 +83,7 @@
 
 
             <div class="position-relative w-50" style="top: 10vh; right: 0vw;">
-              <img class="rounded-5" src="img/varie/idea.png" alt="" width="600vw" height="450vh">
+              <img class="rounded-5" src="http://dumpfinder.altervista.org/indexImg/idea.png" alt="" width="650vw" height="550vh">
             </div>
         </div>
       </div>
@@ -129,7 +129,7 @@
       <!-- RISULTATI DIV -->
       <div id="ris" class="container-md d-flex flex-row my-5 py-5">
         <div class="position-relative w-50" style="top: -10vh; right: -4vw;">
-          <img class="rounded-5" src="img/varie/risultati.jpg" alt="" width="600vw" height="450vh">
+          <img class="rounded-5" src="http://dumpfinder.altervista.org/indexImg/risultati.jpg" alt="" width="650vw" height="550vh">
         </div> 
         
         <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 0vw;">
@@ -204,7 +204,7 @@
               <h3 class="text-center team">Database</h3>
               <!-- DIV IMG CARD -->
               <div class="position-relative" style="bottom: 1.25vw;">
-                <img class="img-team" src="img/varie/netturbino.jpg" alt="" width="300vw" height="300vh">
+                <img class="img-team" src="http://dumpfinder.altervista.org/indexImg/dbGroup.jpg" alt="" width="300vw" height="300vh">
               </div>
             </div>
             <div>
@@ -212,7 +212,7 @@
               <h3 class="text-center team">WEB</h3>
               <!-- DIV IMG CARD -->
               <div class="position-relative" style="bottom: 1.25vw;">
-                <img class="img-team" src="img/varie/netturbino.jpg" alt="" width="300vw" height="300vh">
+                <img class="img-team" src="http://dumpfinder.altervista.org/indexImg/webGroup.jpg" alt="" width="300vw" height="300vh">
               </div>
             </div>
             <div>
@@ -220,7 +220,7 @@
               <h3 class="text-center team">Mobile</h3>
               <!-- DIV IMG CARD -->
               <div class="position-relative" style="bottom: 1.25vw;">
-                <img class="img-team" src="img/varie/netturbino.jpg" alt="" width="300vw" height="300vh">
+                <img class="img-team" src="http://dumpfinder.altervista.org/indexImg/mobileGroup.jpg" alt="" width="300vw" height="300vh">
               </div>
             </div>
           </div>

@@ -203,6 +203,14 @@ body *{
     vertical-align: top;
 }
 
+#closeDescriptionWindow{
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+#closeDescriptionWindow:hover{
+    transform: scale(1.10);
+}
 
 @media screen and (max-width: 3000px) and (min-width: 600px) {
     .card{   
