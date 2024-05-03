@@ -8,19 +8,6 @@
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/footer.css">
 
-      <?php
-        session_start();
-        require_once "php/connToDB.php";
-
-        if(isset($_GET['logout']) && $_GET['logout'] == "-1"){
-          $_SESSION['log'] = -1;
-        }
-
-        if (!$conn) {
-            die("Connessione al database fallita: " . mysqli_connect_error());
-        }
-      ?>
-
     </head>
     <body class="d-flex justify-content-center flex-column g-5">
       <!-- LOGIN DIV -->
@@ -57,27 +44,7 @@
           <div class="rounded-5 p-5 w-50 position-relative" style="background-color: #8da24cff; left: 2vw;">
             <h1>IDEA</h1>
             <p class="me-4">
-              <?php
-
-                $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'idea'";
-                $result = $conn->query($qry);
-
-                if ($result) {
-                    // Controlla se ci sono risultati
-                    if ($result->num_rows > 0) {
-                        // Ottieni i risultati della query
-                        while ($row = $result->fetch_assoc()) {
-                            $content_text = $row["content_text"];
-                            echo $content_text;
-                        }
-                    } else {
-                        echo "Nessun risultato trovato.";
-                    }
-                } else {
-                    echo "Errore nella query: " . $conn->error;
-                }
-
-              ?>
+          
             </p>
           </div>
 
@@ -92,20 +59,6 @@
       <div id="stat" class="d-flex justify-content-center flex-column text-center w-100 my-5 py-5">
         <h1>STATISTICHE</h1>
         <div class="slider w-100 p-5">
-
-          <?php
-            $qry = "SELECT view_num_stat.Category FROM `view_num_stat`";
-            $result = $conn->query($qry);
-            
-          if ($result) {
-            // Controlla se ci sono risultati
-            if ($result->num_rows > 0) {
-              // Ottieni i risultati della query
-              while($row = $result -> fetch_assoc()){
-                $row = $row['Category'];
-                $nameStat = str_replace('_', ' ', $row);
-                $nameStat = ucwords($nameStat);
-                echo "
                 <div class='item'>
                   <img src='img/varie/netturbino.jpg' alt='netturbino' class='img'>
                   <div class='text d-flex justify-content-center flex-column w-100 pt-3'>
@@ -113,13 +66,6 @@
                       <h1 class='text-center' id='$row'></h1>
                   </div>
                 </div>
-                ";
-              } 
-            } else echo "Nessun risultato trovato.";
-          } else {
-            echo "Errore nella query: " . $conn->error;
-          }  
-          ?>
           <button id="next">></button>
           <button id="prev"><</button>
         </div>
@@ -139,17 +85,6 @@
           <!-- CONTENUTO RISULTATI -->
           <div class="d-flex justify-content-center align-items-center flex-row flex-wrap">
             <p>
-              <?php
-
-                $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'risultati'";
-                $result = $conn->query($qry);
-                
-                while($row = $result -> fetch_assoc()){
-                  $row = $row["content_text"];
-                  echo "$row";
-                }
-
-              ?>
             </p>
             <img src="img/" alt="">
           </div>
@@ -162,32 +97,11 @@
         <!-- CONTENUTO -->
         <div class="row d-flex g-5">
           <div class="col-6">
-            <?php
-
-              $qry = "SELECT content_text FROM `web_text` WHERE  name_text = 'chi_siamo'";
-              $result = $conn->query($qry);
-
-              $text = array("", "");
-              while($row = $result -> fetch_assoc()){
-                $test = explode("|", $row['content_text']);
-        
-                // Assegna i valori dell'array $test all'array $text
-                $text[0] = $test[0];
-                $text[1] = $test[1];
-            } 
-
-            ?>
             <p class="primary-color">
-              <?php 
-                echo "$text[0]";
-              ?>
             </p>
           </div>
           <div class="col-6">
             <p class="primary-color">
-              <?php 
-                echo "$text[1]";
-              ?>
             </p>
           </div>
         </div>
