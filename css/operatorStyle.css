@@ -293,6 +293,11 @@ body *{
             min-width: 80vw;
             max-height: 30vh;
         }
+
+        #btn-logout{
+            padding: 2vh 10vw;
+            font-size: xx-large;
+        }
         
     }
 }
