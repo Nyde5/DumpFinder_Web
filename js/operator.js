@@ -58,7 +58,7 @@ function changeStatus(id, type, idElement){
 }
 
 function changeValueOnDB(id, type){
-    $.post('php/changeReportStatus.php', {
+    $.post('phphttp://dumpfinder.altervista.org/my_dumpfinder/mail_conferma.php', {
         id: id,
         type: type
     }, (data, status)=>{
@@ -90,7 +90,7 @@ function showError(message){
 function sendMotivationMessage(){
     const motivation = document.getElementById('motivation').value;
     if(motivation.length > 10){
-        $.post('php/changeReportStatus.php', {
+        $.post('http://dumpfinder.altervista.org/my_dumpfinder/mail_conferma.php ', {
             id: obj_user_select.idCardSel,
             type: 3,
             motivation: motivation
