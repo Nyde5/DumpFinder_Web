@@ -150,7 +150,7 @@
                 </div>
 
                 <div id="motivationDiv" class="denyDivFixed">
-                    <div class="row d-flex flex-column card card-header rounded-3 gap-3 px-4 w-25 h-50">
+                    <div class="row d-flex flex-column card card-header rounded-3 gap-3 px-4 w-25 h-50 denyDivContent">
                         <div class="col-3 w-100">
                             <h1 id="closeDescriptionWindow" class="text-end position-absolute start-100" style="top: -8%;">X</h1>
                         </div>

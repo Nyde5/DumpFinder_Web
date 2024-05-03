@@ -26,7 +26,7 @@ function changeStatus(id, type, idElement){
 
         const num = getNumber(idElement);
 
-        const statusText = document.getElementById('statusText' + num);
+        obj_user_select.statusText = document.getElementById('statusText' + num);
 
         obj_user_select.obj.classList = 'bollino';
         let text = '';
@@ -48,7 +48,7 @@ function changeStatus(id, type, idElement){
 
         obj_user_select.idCardSel = id;
         if(!text.includes('Rifiutata')){            
-            statusText.innerText = 'Stato: ' + text;
+            obj_user_select.statusText.innerText = 'Stato: ' + text;
             changeValueOnDB(id, type);
         }
     } catch (error) {
@@ -100,7 +100,7 @@ function sendMotivationMessage(){
         hideMotivationDiv();
         let text = 'Rifiutata';
         obj_user_select.obj.classList.add('Rifiutata');
-        statusText.innerText = 'Stato: ' + text;
+        obj_user_select.statusText.innerText = 'Stato: ' + text;
     } else showError('Il Messaggio Deve Essere Almeno di 10 Caratteri');
 }
 
