@@ -23,7 +23,7 @@
 
     #login_div {
       height: 35%;
-      width: 60vh;
+      width: 40%;
       margin: auto;
     }
 
@@ -107,7 +107,7 @@
       font-size: 150%;
       font-weight: 500;
       border-radius: 1.2rem;
-      padding-bottom: 8.5%;
+      padding-bottom: 2.5rem;
     }
   }
 
@@ -118,7 +118,7 @@
 
     #login_div {
       height: 40%;
-      width: 80vh;
+      width: 50%;
       margin: auto;
     }
 
@@ -202,7 +202,7 @@
       font-size: 150%;
       font-weight: 500;
       border-radius: 1.7rem;
-      padding-bottom: 8.5%;
+      padding-bottom: 3.8 rem;
     }
   }
 
@@ -237,8 +237,8 @@
   }
 
   #login_div {
-    height: 40%;
-    width: 50vh;
+    height: 35%;
+    width: 70%;
     margin: auto;
   }
 
@@ -252,7 +252,7 @@
     position: relative;
     padding: 15px 0 0;
     margin-top: 10px;
-    width: 70%;
+    width: 60%;
     margin: auto;
     font-weight: 350;
   }
@@ -312,17 +312,17 @@
 
   #login {
     position: relative;
-    top: 9.5rem;
+    top: 8.5rem;
     background-color: var(--primary-light);
     border-color: var(--primary);
     border-width: 2px;
-    width: 40%;
+    width: 50%;
     height: 15%;
     color: var(--primary);
-    font-size: 150%;
+    font-size: 120%;
     font-weight: 500;
-    border-radius: 1.7rem;
-    padding-bottom: 10%;
+    border-radius: 1rem;
+    padding-bottom: 2rem;
   }
 
   /* BACKGROUND */
