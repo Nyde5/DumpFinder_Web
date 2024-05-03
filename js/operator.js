@@ -9,6 +9,12 @@ motivation.addEventListener('input', ()=>checkMotivation());
 
 let idAdmin = -1;
 
+const obj_user_select = {
+    idCardSel: -1,
+    obj: -1,
+    statusText: -1
+};
+
 function checkMotivation(){
     const showNumLetter = document.getElementById('showNumLetter');
     showNumLetter.innerText = 'Max ' + motivation.value.length + '/250 words';
@@ -16,46 +22,48 @@ function checkMotivation(){
 
 function changeStatus(id, type, idElement){
     try {
-        const elementClass = document.getElementById(idElement);
+        obj_user_select.obj = document.getElementById(idElement);
 
         const num = getNumber(idElement);
 
         const statusText = document.getElementById('statusText' + num);
 
-        elementClass.classList = 'bollino';
+        obj_user_select.obj.classList = 'bollino';
         let text = '';
 
         switch (type) {
             case 2:
                 text = 'Approvata';
-                elementClass.classList.add('Approvata');
+                obj_user_select.obj.classList.add('Approvata');
                 break;
             case 3: 
                 text = 'Rifiutata';
-                // elementClass.classList.add('Rifiutata');
                 showMotivationDiv();
                 break;
             case 4:
                 text = 'Bonificata';
-                elementClass.classList.add('Bonificata');
+                obj_user_select.obj.classList.add('Bonificata');
                 break;    
         }
 
+        obj_user_select.idCardSel = id;
         if(!text.includes('Rifiutata')){            
             statusText.innerText = 'Stato: ' + text;
-            
-            
-            $.post('php/changeReportStatus.php', {
-                id: id,
-                type: type
-            }, (data, status)=>{
-                console.log(status);
-            }, "json");
+            changeValueOnDB(id, type);
         }
     } catch (error) {
         console.error("ERRORE JS: " + error);
     }
 
+}
+
+function changeValueOnDB(id, type){
+    $.post('php/changeReportStatus.php', {
+        id: id,
+        type: type
+    }, (data, status)=>{
+        console.log(status);
+    }, "json");
 }
 
 function showMotivationDiv() {
@@ -82,15 +90,17 @@ function showError(message){
 function sendMotivationMessage(){
     const motivation = document.getElementById('motivation').value;
     if(motivation.length > 10){
-
-        console.log('Motivazione mandata...');
-        // $.post('php/changeReportStatus.php', {
-        //     id: id,
-        //     type: type
-        // }, (data, status)=>{
-        //     console.log(status);
-        // }, "json");   
+        $.post('php/changeReportStatus.php', {
+            id: obj_user_select.idCardSel,
+            type: 3,
+            motivation: motivation
+        }, (data, status)=>{
+            console.log(data);
+        }, "json");   
         hideMotivationDiv();
+        let text = 'Rifiutata';
+        obj_user_select.obj.classList.add('Rifiutata');
+        statusText.innerText = 'Stato: ' + text;
     } else showError('Il Messaggio Deve Essere Almeno di 10 Caratteri');
 }
 
