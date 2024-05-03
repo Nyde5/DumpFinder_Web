@@ -101,7 +101,7 @@
       background-color: var(--primary-light);
       border-color: var(--primary);
       border-width: 2px;
-      width: 25%;
+      width: 35%;
       height: 15%;
       color: var(--primary);
       font-size: 150%;
@@ -196,13 +196,13 @@
       background-color: var(--primary-light);
       border-color: var(--primary);
       border-width: 2px;
-      width: 25%;
+      width: 30%;
       height: 15%;
       color: var(--primary);
       font-size: 150%;
       font-weight: 500;
-      border-radius: 1.7rem;
-      padding-bottom: 3.8 rem;
+      border-radius: 1.3rem;
+      padding-bottom: 3.8rem;
     }
   }
 
@@ -312,11 +312,11 @@
 
   #login {
     position: relative;
-    top: 8.5rem;
+    top: 7rem;
     background-color: var(--primary-light);
     border-color: var(--primary);
     border-width: 2px;
-    width: 50%;
+    width: 40%;
     height: 15%;
     color: var(--primary);
     font-size: 120%;
