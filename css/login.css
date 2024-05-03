@@ -97,11 +97,11 @@
 
     #login {
       position: relative;
-      top: 8rem;
+      top: 15rem;
       background-color: var(--primary-light);
       border-color: var(--primary);
       border-width: 2px;
-      width: 35%;
+      width: 45%;
       height: 15%;
       color: var(--primary);
       font-size: 150%;
@@ -192,11 +192,11 @@
 
     #login {
       position: relative;
-      top: 9rem;
+      top: 15rem;
       background-color: var(--primary-light);
       border-color: var(--primary);
       border-width: 2px;
-      width: 30%;
+      width: 40%;
       height: 15%;
       color: var(--primary);
       font-size: 150%;
@@ -231,7 +231,7 @@
   }
 }
 
-@media (orientation: portrait) {
+  @media (orientation: portrait) {
   body {
     font-size: 1rem;
   }
@@ -312,11 +312,11 @@
 
   #login {
     position: relative;
-    top: 7rem;
+    top: 15rem;
     background-color: var(--primary-light);
     border-color: var(--primary);
     border-width: 2px;
-    width: 40%;
+    width: 60%;
     height: 15%;
     color: var(--primary);
     font-size: 120%;
