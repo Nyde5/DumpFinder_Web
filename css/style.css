@@ -191,6 +191,11 @@
       position: fixed;
     }
   }
+
+
+  #div-idea{
+    background-color: black;
+  }
 }
 
 /* Stili per dispositivi tablet */
