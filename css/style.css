@@ -80,6 +80,43 @@ p {
   font-size: large;
 }
 
+#div-idea {
+  background-color: #8da24cff;
+  left: 2vw;
+}
+
+#div-img {
+  top: 10vh;
+  right: 0vw;
+}
+
+#immagina{
+  width: 650px;
+  height: 550px;
+}
+
+
+@media (max-width: 567px) {
+  #div-img {
+    background-color: aquamarine;
+    align-items: center;
+    position: sticky;
+  }
+
+  #div-idea {
+    text-align: center;
+    background-color: black;
+    left: 1vw;
+  }
+
+  #immagina{
+    width: auto;
+    height: auto;
+    align-items: center;
+  }
+
+}
+
 /* CAROUSEL STATISTICHE */
 
 .slider {
