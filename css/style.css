@@ -91,22 +91,47 @@ p {
 }
 
 #immagina{
-  width: 650px;
-  height: 550px;
+  width: 400px;
+  height: 250px;
 }
 
 
 @media (max-width: 567px) {
+  #idea{
+    display: flex;
+    flex-direction: column !important; 
+    align-items: center; /* Centra gli elementi lungo l'asse trasversale */
+    justify-content: center !important;
+
+  }
+
+
   #div-img {
     background-color: aquamarine;
     align-items: center;
-    position: sticky;
+    /*position: sticky;*/
+
+    top: 0; /* Rimuove il margine superiore */
+    margin-top: 20vw; /* Aggiunge un margine sopra l'immagine */
+    text-align: center; /* Centra l'immagine orizzontalmente */
+    max-width: 10vw !important;
+    display: flex;
+    justify-content: center !important;
+    border-radius: 10px; /* Aggiunge angoli curvi */
+    padding: 10px; /* Aggiunge margine a destra e sinistra */
   }
 
   #div-idea {
     text-align: center;
     background-color: black;
     left: 1vw;
+
+    left: 0; /* Rimuove il margine sinistro */
+    right: 0; /* Rimuove il margine destro */
+    margin: auto; /* Imposta margin: auto per centrare l'elemento orizzontalmente */
+    text-align: center; /* Centra il testo all'interno dell'elemento */
+    display: flex;
+    justify-content: center !important;
   }
 
   #immagina{
@@ -114,6 +139,8 @@ p {
     height: auto;
     align-items: center;
   }
+
+  
 
 }
 
