@@ -115,15 +115,6 @@ p {
 
   }
 
-  #ris{
-    display: flex;
-    flex-direction: column !important; 
-    align-items: center; /* Centra gli elementi lungo l'asse trasversale */
-    justify-content: center !important;
-    margin-top: 10vw;
-
-  }
-
   #div-img {
     align-items: center;
     /*position: sticky;*/
@@ -155,12 +146,15 @@ p {
 
 
 
+  #ris{
+    display: flex;
+    flex-direction: column !important; 
+    align-items: center; /* Centra gli elementi lungo l'asse trasversale */
+    justify-content: center !important;
+    margin-top: 10vw;
 
-  #immagina-ris{
-    width: 300vw !important;
-    height: 60vw !important;
-    align-items: center;
   }
+
 
   .div-ris {
     text-align: center;
@@ -170,6 +164,24 @@ p {
     display: flex;
     justify-content: center !important;
     padding-inline: 5vw;
+  }
+
+  #div-img-ris {
+    align-items: center;
+    /*position: sticky;*/
+    top: 0; /* Rimuove il margine superiore */
+    margin-top: -2vw;
+    width: 9vw !important;
+    display: flex;
+    justify-content: center !important;
+    border-radius: 10px;
+    padding: 10px; 
+  }
+
+  #immagina-ris{
+    width: 300vw !important;
+    height: 60vw !important;
+    align-items: center;
   }
 
 }
