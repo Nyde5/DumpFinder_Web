@@ -161,44 +161,34 @@ p {
 
 
 
-  #ris{
-    display: flex;
-    flex-direction: column !important; 
-    align-items: center; /* Centra gli elementi lungo l'asse trasversale */
-    justify-content: center !important;
-    margin-top: 10vw;
+  #ris {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vw;
+}
 
-  }
+.div-ris {
+  text-align: center;
+  text-align: center; /* Centra il testo all'interno dell'elemento */
+  display: flex;
+  justify-content: center !important;
+  width: 120% !important;
+  margin-bottom: 5vw;
+}
 
+#immagina-ris {
+  width: 35vw !important;
+  height: 30vw !important;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+}
 
-  .div-ris {
-    text-align: center;
-    left: 1vw;
-    margin: auto; /* Imposta margin: auto per centrare l'elemento orizzontalmente */
-    text-align: center; /* Centra il testo all'interno dell'elemento */
-    display: flex;
-    justify-content: center !important;
-    padding-inline: 5vw;
-  }
-
-  #div-img-ris {
-    align-items: center;
-    /*position: sticky;*/
-    top: 0; /* Rimuove il margine superiore */
-    margin-top: -2vw;
-    width: 9vw !important;
-    display: flex;
-    justify-content: center !important;
-    border-radius: 10px;
-    padding: 10px; 
-  }
-
-  #immagina-ris{
-    width: 300vw !important;
-    height: 60vw !important;
-    align-items: center;
-  }
-
+#div-h1-ris {
+  margin: 0;
+}
 }
 
 /* CAROUSEL STATISTICHE */
