@@ -11,12 +11,15 @@ const struct = [];
 let isOnStat = false;
 
 function setDataStat(data){
+  console.log(data);
   data.forEach(element => {
+    if(element.Category.includes('Citta')) element.Category = 'citta';
     div = document.getElementById(element.Category);
     struct.push({
       div: div,
       value: parseInt(element.Count)
     });
+    console.log(struct);
   });
   struct.forEach(element => {
     let i = 0;

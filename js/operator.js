@@ -90,7 +90,7 @@ function showError(message){
 function sendMotivationMessage(){
     const motivation = document.getElementById('motivation').value;
     if(motivation.length > 10){
-        $.post('http://dumpfinder.altervista.org/my_dumpfinder/mail_conferma.php ', {
+        $.post('http://dumpfinder.altervista.org/php/changeReportStatus.php', {
             id: obj_user_select.idCardSel,
             type: 3,
             motivation: motivation

@@ -82,7 +82,6 @@ p {
 
 #div-idea {
   background-color: #8da24cff;
-  left: 2vw;
 }
 
 #div-ris {
@@ -117,7 +116,7 @@ p {
 
   #div-img {
     align-items: center;
-    /*position: sticky;*/
+    /*position: sticky;/
     top: 0; /* Rimuove il margine superiore */
     margin-top: -6vw;
     width: 9vw !important;
@@ -128,12 +127,10 @@ p {
   }
 
   #div-idea {
-    text-align: center;
-    /* left: 1vw; */
     text-align: center; /* Centra il testo all'interno dell'elemento */
     display: flex;
     justify-content: center !important;
-    width: 120% !important;
+    width: 132% !important;
     margin-bottom: 5vw;
   }
 
@@ -158,6 +155,12 @@ p {
   .div-sq{
     margin-top: 20vw;
   }
+
+  .img-qr-code {
+    width: 0vw !important;
+    height: 40vw !important;
+  }
+
 
 
 
@@ -204,8 +207,6 @@ p {
 }
 
 .item {
-  display: flex;
-  justify-content: center;
   position: absolute;
   width: 15%;
   height: 90%;
@@ -240,13 +241,10 @@ p {
 
 .img {
   width: 100%;
-  height: 50%;
-  background-size: 50% !important;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 45%;
   border-top-left-radius: 3%;
   border-top-right-radius: 3%;
-  /* object-fit: cover; */
+  object-fit: cover;
   filter: brightness(85%);
 }
 
